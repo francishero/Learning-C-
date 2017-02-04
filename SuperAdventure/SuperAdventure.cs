@@ -24,7 +24,6 @@ namespace SuperAdventure
 
             _player = new Player(10,10,20,0,1);
 
-       
 
             IbIHitPoints.Text = _player.CurrentHitPoints.ToString();
             IbIGold.Text = _player.Gold.ToString();
@@ -33,6 +32,34 @@ namespace SuperAdventure
             
         }
 
-       
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNorth1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnWest_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSouth_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUsePotion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEast_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Engine;
 /*
+ * HOLDS EVERYTHING THAT EXISTS IN THE GAME WORLD
  *This is going to a static class
  * it will be available to the rest of the program
  * no need to create an object in order to use it
@@ -19,6 +20,8 @@ namespace Engine
 {
    public static  class World
     {
+        //readonly here means the variable will not be modified after initialisation
+        //can be changed in the constructor and declaration but no where else
         public static readonly List<Item> Items = new List<Item>();
         public static readonly List<Monster> Monsters = new List<Monster>();
         public static readonly List<Quest> Quests = new List<Quest>();
@@ -52,7 +55,7 @@ namespace Engine
         public const int LOCATION_ID_BRIDGE = 8;
         public const int LOCATION_ID_SPIDER_FIELD = 9;
 
-        static World()   //static ctor
+        static World()   //static ctor will be called only once
         {
             PopulateItems();
             PopulateMonsters();
@@ -83,7 +86,7 @@ namespace Engine
             rat.LootTable.Add(new LootItem(ItemByID(ITEM_ID_PIECE_OF_FUR), 75, false));
 
             Monster snake = new Engine.Monster(MONSTER_ID_SNAKE, "Snake", 5, 3, 10, 3, 3);
-            snake.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SNAKE_FANG), 75, false));
+            snake.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SNAKE_FANG), 75, false)) ;
             snake.LootTable.Add(new LootItem(ItemByID(ITEM_ID_SNAKESIN), 75, true));
 
             Monster giantSpider = new Engine.Monster(MONSTER_ID_GIANT_SPIDER,"Giant Spider", 5, 3, 10, 3, 3);
