@@ -15,6 +15,8 @@ namespace SuperAdventure
     {
         //we dont need anything outside of this screen to use it
         private Player _player;
+        private Monster _currentMonster;
+
         public SuperAdventure()
         {
             InitializeComponent();
@@ -60,6 +62,58 @@ namespace SuperAdventure
         private void btnEast_Click(object sender, EventArgs e)
         {
 
+        }
+        private void moveTo(Location newLocation)
+        {
+            //moves the player to a new location
+            if (newLocation.ItemRequiredToEnter != null)
+            {
+                //an item is required to enter this location
+                //check if the player has the required item in their inventory
+
+                bool playerHasRequiredItem = false;
+
+                foreach(InventoryItem ii in _player.Inventory)
+                {
+                    if(ii.Details.ID==newLocation.ItemRequiredToEnter.ID)
+                    {
+                        //found the required item
+                        playerHasRequiredItem = true;
+
+                        break;//exit out of the foreach loop
+
+                    }
+                }
+                if(!playerHasRequiredItem)
+                {
+                    //we didnt find the required item in their inventory,
+                    //display message and stop trying to move
+                    rtMessages.Text = @"You must have a " + newLocation.ItemRequiredToEnter.Name +
+                            " to enter this location. " + Environment.NewLine;
+
+                    return;
+
+                }
+            }
+
+            //update the players current location
+            _player.currentLocation = newLocation;
+
+            //show/Hide  the available movement buttons
+            btnNorth1.Visible = (newLocation.LocationToNorth != null);
+            btnEast.Visible = (newLocation.LocationToEast != null);
+            btnSouth.Visible = (newLocation.LocationToSouth != null);
+            btnWest.Visible = (newLocation.LocationToWest != null);
+
+            //display the current name and location
+            rtLocation.Text = newLocation.Name + Environment.NewLine;
+            rtLocation.Text += newLocation.Description + Environment.NewLine;
+
+            //completely heal the player
+            _player.CurrentHitPoints = _player.MaximumHitPoints;
+
+            //update the hitPoints in UI
+            IbIHitPoints.Text = _player.CurrentHitPoints.ToString(); 
         }
     }
 }
