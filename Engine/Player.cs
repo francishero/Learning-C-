@@ -18,7 +18,9 @@ namespace Engine
      */
     public class Player : LivingCreature
     {
-
+        public List<InventoryItem> Inventory;// TODO: Francis just trying
+        //the players current location
+        public Location currentLocation { get; set; }
         public int Gold { get; set; }
         public int ExperiencePoints { get; set; }
         public int Level { get; set; }
@@ -28,6 +30,11 @@ namespace Engine
             Gold = gold;
             ExperiencePoints = experiencePoints;
             Level = level;
+
+            //TODO Francis: clear this shit up
+
+            //this code might not supposed to be here
+            Inventory = new List<InventoryItem>();
         }
     }
 }
